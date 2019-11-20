@@ -9,12 +9,12 @@ torch.cuda.empty_cache()
 STATE_DIM = 126
 ACTION_DIM = 20
 BATCH_SIZE = 1024
-LEARNING_RATE = 2e-4
-EPISODE = 10000
+LEARNING_RATE = 1e-4
+EPISODE = 1e6
 HORIZON = 1024
 ENV_SIZE = 10
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-PATH = './a2c_checkpoint'
+PATH = './re/a2c_checkpoint'
 a2c_args = {'state_dim': STATE_DIM, 'action_dim': ACTION_DIM, 'batch_size': BATCH_SIZE, 'learning_rate':LEARNING_RATE}
 replay_buffer_args = {'state_dim': STATE_DIM, 'action_dim': ACTION_DIM, 'buffer_size': HORIZON, 'env_size': ENV_SIZE, 'batch_size': BATCH_SIZE}
 

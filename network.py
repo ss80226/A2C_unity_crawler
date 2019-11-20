@@ -27,7 +27,10 @@ class Network(nn.Module):
         # print(mu_vector)
         # print(mu_vector)
         sigma_vector = x[:, self.action_dim:self.action_dim*2]
-        sigma_vector = torch.abs(sigma_vector)
+        
+        # sigma_vector = torch.abs(sigma_vector)
+        sigma_vector = F.softplus(sigma_vector)
+        # print(sigma_vector)
         return mu_vector, sigma_vector
     def act(self, mu_vector, sigma_vector):
         '''

@@ -26,7 +26,7 @@ value_net = a2c.value_net
 policy.load_state_dict(torch.load(PATH+ '_policy'))
 value_net.load_state_dict(torch.load(PATH+ '_valueNet'))
 
-env = UnityEnv('crawler', multiagent=True, worker_id = 2).unwrapped
+env = UnityEnv('crawler', multiagent=True, worker_id = 1).unwrapped
 
 for current_episode in range(EPISODE):
     # env.render()

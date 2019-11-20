@@ -20,8 +20,11 @@ class A2C(object):
         self.policy = Network(self.policy_args).to(DEVICE)
         self.value_net = ValueNet(self.policy_args).to(DEVICE)
         self.mse = nn.MSELoss()
-        self.policy_optimizer = optim.SGD(self.policy.parameters(), lr=args['learning_rate'])
-        self.value_net_optimizer = optim.SGD(self.value_net.parameters(), lr=args['learning_rate'])
+        # self.policy_optimizer = optim.SGD(self.policy.parameters(), lr=args['learning_rate'])
+        self.policy_optimizer = optim.Adam(self.policy.parameters(), lr=args['learning_rate'])
+        # self.value_net_optimizer = optim.SGD(self.value_net.parameters(), lr=args['learning_rate'])
+        self.value_net_optimizer = optim.Adam(self.value_net.parameters(), lr=args['learning_rate'])
+
     def update(self, replay_buffer):
         state_array, action_array, reward_array, true_state_value_array, advantage_array = replay_buffer.sample(self.batch_size)
         state_batch = torch.tensor(state_array).float().to(DEVICE)
